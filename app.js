@@ -16,7 +16,8 @@ connection.connect((err) => {
     } else {
         console.log('DB Connected');
         // insertData(connection)
-        deleteDataByID(connection)
+        // deleteDataByID(connection)
+        updateData(connection)
     }
 });
 
@@ -40,6 +41,19 @@ const deleteDataByID = (con) => {
         }
         else {
             console.log("Data Deleted Successfully");
+        }
+    })
+}
+
+
+const updateData = (con) => {
+    const SqlQuery = "UPDATE employee_data SET age='26', salary='2700' WHERE  id='3'";
+    con.query(SqlQuery, (err) => {
+        if (err) {
+            console.log("Failed to Update Data");
+        }
+        else {
+            console.log("Data Updated Successfully");
         }
     })
 }
