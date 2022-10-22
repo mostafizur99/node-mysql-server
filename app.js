@@ -15,5 +15,18 @@ connection.connect((err) => {
         console.error('DB Connection Error: ' + err.stack);
     } else {
         console.log('DB Connected');
+        insertData(connection)
     }
 });
+
+const insertData = (con) => {
+    const sqlQuery = "INSERT INTO employee_data (name,age,gender,salary) VALUES(?,?,?,?)"
+    const insertedData = ['Bob Yard', '25', 'Male', '2500']
+    con.query(sqlQuery, insertedData, (err) => {
+        if (err) {
+            console.error('Data Insertion Failed', err);
+        } else {
+            console.log('Data Inserted Successfully');
+        }
+    })
+}
