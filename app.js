@@ -15,7 +15,8 @@ connection.connect((err) => {
         console.error('DB Connection Error: ' + err.stack);
     } else {
         console.log('DB Connected');
-        insertData(connection)
+        // insertData(connection)
+        deleteDataByID(connection)
     }
 });
 
@@ -27,6 +28,18 @@ const insertData = (con) => {
             console.error('Data Insertion Failed', err);
         } else {
             console.log('Data Inserted Successfully');
+        }
+    })
+}
+
+const deleteDataByID = (con) => {
+    const sqlQuery = "DELETE FROM employee_data WHERE id=2";
+    con.query(sqlQuery, (err) => {
+        if (err) {
+            console.log("Failed to Delete Data");
+        }
+        else {
+            console.log("Data Deleted Successfully");
         }
     })
 }
