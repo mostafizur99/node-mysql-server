@@ -17,7 +17,8 @@ connection.connect((err) => {
         console.log('DB Connected');
         // insertData(connection)
         // deleteDataByID(connection)
-        updateData(connection)
+        // updateData(connection)
+        findData(connection)
     }
 });
 
@@ -47,13 +48,25 @@ const deleteDataByID = (con) => {
 
 
 const updateData = (con) => {
-    const SqlQuery = "UPDATE employee_data SET age='26', salary='2700' WHERE  id='3'";
-    con.query(SqlQuery, (err) => {
+    const sqlQuery = "UPDATE employee_data SET age='26', salary='2700' WHERE  id='3'";
+    con.query(sqlQuery, (err) => {
         if (err) {
             console.log("Failed to Update Data");
         }
         else {
             console.log("Data Updated Successfully");
+        }
+    })
+}
+
+const findData = (con) => {
+    const sqlQuery = "SELECT * FROM employee_data";
+    con.query(sqlQuery, (err, result) => {
+        if (err) {
+            console.log("Failed to Fetch Data");
+        }
+        else {
+            console.log("Data Fetched Successfully:", result);
         }
     })
 }
